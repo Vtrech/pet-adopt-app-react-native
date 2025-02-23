@@ -1,5 +1,5 @@
 import { View, Text, Image, Pressable } from 'react-native'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Colors } from './../../constants/Colors'
 import * as WebBrowser from 'expo-web-browser'
 import { useOAuth } from '@clerk/clerk-expo'
@@ -22,10 +22,10 @@ export default function LoginScreen() {
 
     const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
-    const onPress = React.useCallback(async () => {
+    const onPress = useCallback(async () => {
         try {
             const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow({
-                redirectUrl: Linking.createURL('./(tabs)/home', { scheme: 'myapp' }),
+                redirectUrl: Linking.createURL('/(tabs)/home', { scheme: 'myapp' }),
             });
 
             if (createdSessionId) {
