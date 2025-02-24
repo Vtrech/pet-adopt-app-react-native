@@ -22,7 +22,7 @@ export default function LoginScreen() {
 
     const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
-    const onPress = useCallback(async () => {
+    const onPress = React.useCallback(async () => {
         try {
             const { createdSessionId, signIn, signUp, setActive } = await startOAuthFlow({
                 redirectUrl: Linking.createURL('/(tabs)/home', { scheme: 'myapp' }),
