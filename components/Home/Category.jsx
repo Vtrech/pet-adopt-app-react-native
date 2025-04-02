@@ -10,12 +10,12 @@ export default function Category({ category }) {
     const [categoryList, setCategoryList] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('Dogs')
     useEffect(() => {
-        GetCategory();
+        GetCategories();
     }, [])
 
     // Use to Get Category List from DB
 
-    const GetCategory = async () => {
+    const GetCategories = async () => {
         setCategoryList([]);
         const snapshot = await getDocs(collection(db, 'Category'))
         snapshot.forEach((doc) => {

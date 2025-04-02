@@ -9,7 +9,7 @@ export default function PetListItem({ pet }) {
 
     return (
         <TouchableOpacity
-            onPress={() => router.push({
+            onPress={() => router.navigate({
                 pathname: '/pet-details',
                 params: pet
             })}

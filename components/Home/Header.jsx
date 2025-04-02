@@ -1,10 +1,19 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUser } from '@clerk/clerk-expo'
 
 export default function Header() {
     const { user } = useUser();
-    console.log("User data:", user); // Debugging
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        if (user) {
+            setUserData({
+                lastName: user.lastName,
+                imageUrl: user.imageUrl
+            });
+        }
+    }, [user]);
 
     return (
         <View style={{
@@ -21,9 +30,9 @@ export default function Header() {
                 <Text style={{
                     fontFamily: 'outfit-medium',
                     fontSize: 25
-                }}>{user?.lastName}</Text>
+                }}>{userData?.lastName}</Text>
             </View>
-            <Image source={{ uri: user?.imageUrl }}
+            <Image source={{ uri: userData?.imageUrl }}
                 style={{
                     width: 40,
                     height: 40,
